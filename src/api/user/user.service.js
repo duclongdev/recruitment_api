@@ -11,9 +11,9 @@ const checkUser = async (email) => {
   }
 };
 const createUser = async (user) => {
+  console.log("create user");
   try {
     const newUser = await User.create({ ...user });
-
     return newUser;
   } catch (err) {
     throw new Error("Not create User");
@@ -40,8 +40,11 @@ const signin = async (user) => {
 const loginWithPassword = async (user) => {
   const userLogin = await checkUser(user.email);
   if (!userLogin) throw new Error("Email is not exists");
-  if (userLogin && userLogin.password === user.password) return userLogin;
-  throw new Error("Password incorrect");
+  const match = await userLogin.checkPassword(user.password);
+  if (!match) {
+    throw new Error("Password incorrect");
+  }
+  return userLogin;
 };
 
 export const Service = {

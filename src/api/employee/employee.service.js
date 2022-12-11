@@ -5,7 +5,7 @@ const signin = async (data) => {
     const emailCompany = data.emailCompany;
     console.log(emailCompany);
     const employee = await Employee.findOne({ emailCompany });
-    if (employee) throw new Error("Email is exits");
+    if (employee) throw new Error("Email is exists");
     else return createEmploy(data);
   } catch (e) {
     throw new Error("Email is exits");
@@ -24,12 +24,12 @@ const createEmploy = async (data) => {
 
 const login = async (account) => {
   const emailCompany = account.email;
-  console.log(emailCompany);
   const employee = await Employee.findOne({ emailCompany });
-  console.log(employee);
   if (!employee) throw new Error("Email is not exists");
-  if (employee.password !== account.password)
+  const match = await employee.checkPassword(account.password);
+  if (!match) {
     throw new Error("Password incorrect");
+  }
   return employee;
 };
 
