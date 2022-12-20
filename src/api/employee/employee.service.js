@@ -33,7 +33,15 @@ const login = async (account) => {
   return employee;
 };
 
+const updateById = async (employId, account) => {
+  const doc = await Employee.findOne(employId);
+  const update = { ...account };
+  const newDoc = await doc.updateOne(update);
+  return newDoc;
+};
+
 export const EmployeeService = {
   signin: signin,
   login: login,
+  updateById: updateById,
 };

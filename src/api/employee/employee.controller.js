@@ -23,7 +23,21 @@ const login = async (req, res, next) => {
   }
 };
 
+const updateById = async (req, res, next) => {
+  try {
+    const account = req.body;
+    const employId = req.params;
+    console.log(employId);
+    const newEmployee = await EmployeeService.updateById(employId, account);
+    res.status(200).json(newEmployee);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+};
+
 export const EmployeeController = {
   signin: signin,
   login: login,
+  updateById: updateById,
 };
