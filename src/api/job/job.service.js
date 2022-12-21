@@ -24,12 +24,36 @@ const getJobs = async () => {
   }
 };
 
-const findJobs = async (data) => {
+const findJobsByCondition = async (condition) => {
+  console.log(condition);
+  return await Job.find({ $text: { $search: condition }, status: true }).sort({
+    createdAt: "desc",
+  });
+};
+
+const findByTwoCondition = async (jobName, location) => {
   const jobs = await Job.find({
-    $text: { $search: data.jobName },
+    $text: { $search: jobName },
     status: true,
-  }).sort({ createdAt: "desc" });
-  console.log(jobs);
+    location: location,
+  }).sort({
+    createdAt: "desc",
+  });
+
+  return jobs;
+};
+
+const findJobs = async (data) => {
+  if (data.jobName === "" && data.location === "") {
+    const jobs = await getJobs();
+    return jobs;
+  }
+  const jobs =
+    data.jobName !== "" && data.location === ""
+      ? findJobsByCondition(data.jobName)
+      : data.jobName === "" && data.location !== ""
+      ? findJobsByCondition(data.location)
+      : findByTwoCondition(data.jobName, data.location);
   return jobs;
 };
 

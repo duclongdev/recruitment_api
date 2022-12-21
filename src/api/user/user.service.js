@@ -14,6 +14,7 @@ const createUser = async (user) => {
   console.log("create user");
   try {
     const newUser = await User.create({ ...user });
+    console.log(newUser);
     return newUser;
   } catch (err) {
     throw new Error("Not create User");
@@ -24,7 +25,11 @@ const login = async (user) => {
     console.log("login with google");
     console.log(user);
     const userLogin = await checkUser(user.email);
-    if (userLogin) return userLogin;
+    if (userLogin) {
+      console.log("user exists");
+      return userLogin;
+    }
+    console.log("user not exists");
     return createUser(user);
   } catch (err) {
     throw new Error("Can't login");
