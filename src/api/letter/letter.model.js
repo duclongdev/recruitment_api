@@ -10,6 +10,20 @@ const letterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Job",
   },
+  infoUser: new Schema(
+    {
+      fullName: String,
+      email: String,
+      phoneNumber: String,
+      address: String,
+      education: String,
+      experience: String,
+      someDescription: String,
+      questions: String,
+      photoURL: String,
+    },
+    { _id: false }
+  ),
 });
 
 export const Letter = mongoose.model("Letter", letterSchema);

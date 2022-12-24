@@ -2,8 +2,13 @@ import { LetterService } from "./letter.service";
 
 const apply = async (req, res, next) => {
   try {
-    const { userId, jobId } = req.body;
-    const letter = await LetterService.createCoverLetter(userId, jobId);
+    const { userId, jobId, infoUser } = req.body;
+    console.log(req.body);
+    const letter = await LetterService.createCoverLetter(
+      userId,
+      jobId,
+      infoUser
+    );
     res.status(200).json(letter);
   } catch (error) {
     console.log(error);

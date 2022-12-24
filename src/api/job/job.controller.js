@@ -23,7 +23,6 @@ const getJobs = async (req, res, next) => {
 
 const findJobs = async (req, res, next) => {
   try {
-    console.log(req.query);
     const jobs = await JobService.findJobs(req.query);
     res.status(200).json(jobs);
   } catch (error) {
@@ -32,17 +31,21 @@ const findJobs = async (req, res, next) => {
   }
 };
 
-// const findJobsByEmployeeId = async (req, res, next) => {
-//   try {
-//     const jobs = JobService.findJobsByEmployeeId(req.params)
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).send(error.message);
-//   }
-// };
+const loadJobMore = async (req, res, next) => {
+  try {
+    const { jobName, location, offset } = req.query;
+    const jobs = await JobService.loadMore(jobName, location, offset);
+    console.log(jobs);
+    res.status(200).json(jobs);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+};
 
 export const JobController = {
   post: post,
   getJobs: getJobs,
   findJobs: findJobs,
+  loadJobMore: loadJobMore,
 };
