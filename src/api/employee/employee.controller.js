@@ -27,7 +27,6 @@ const updateById = async (req, res, next) => {
   try {
     const account = req.body;
     const employId = req.params;
-    console.log(employId);
     const newEmployee = await EmployeeService.updateById(employId, account);
     res.status(200).json(newEmployee);
   } catch (error) {
