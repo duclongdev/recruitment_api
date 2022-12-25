@@ -24,6 +24,10 @@ const letterSchema = new Schema({
     },
     { _id: false }
   ),
+  state: {
+    type: String,
+    default: "process",
+  },
 });
 
 export const Letter = mongoose.model("Letter", letterSchema);
