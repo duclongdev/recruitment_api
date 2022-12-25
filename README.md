@@ -40,8 +40,19 @@
 
 ```json
 {
-  "userId": "6396185a9cc58d527a6871e8",
-  "jobId": "63a06b09f0f5d3f307d978c9"
+  userId: '63a7384b23b7a9e719159592',
+  jobId: '63a4625a503cb2f662d4d19f',
+  infoUser: {
+    fullName: 'Long Nguyễn',
+    email: 'sv2htth@gmail.com',
+    phoneNumber: '0906592672',
+    address: 'Quảng Bình',
+    education: 'middleSchool',
+    experience: '3',
+    someDescription: '',
+    questions: '',
+    photoURL: 'https://lh3.googleusercontent.com/a/ALm5wu0PKVEY__pr9dmb_PIw8aUC-eN35j05AIFLkgxvtA=s96-c'
+  }
 }
 ```
 
