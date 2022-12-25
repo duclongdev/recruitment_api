@@ -12,7 +12,9 @@ const getLetterByEmployeeId = async (id) => {
   const letters = new Array();
 
   for (let job of jobs) {
-    const letter = await Letter.find({ jobId: job._id }).select("-_id -userId -jobId");
+    const letter = await Letter.find({ jobId: job._id }).select(
+      "-_id -userId -jobId"
+    );
     const temp = {
       job,
       letter,
@@ -22,6 +24,8 @@ const getLetterByEmployeeId = async (id) => {
   console.log(letters);
   return letters;
 };
+
+const getAll = () => {};
 export const LetterService = {
   createCoverLetter: createCoverLetter,
   getLetterByEmployeeId: getLetterByEmployeeId,
