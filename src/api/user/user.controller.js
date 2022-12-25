@@ -32,7 +32,20 @@ const signin = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const userInfo = req.body;
+    const userId = req.params.id;
+    const updateUser = await Service.update(userId, userInfo);
+    res.status(200).json(updateUser);
+  } catch (e) {
+    console.log(e.message);
+    res.status(400).send(e.message);
+  }
+};
+
 export const Controller = {
   login: login,
   signin: signin,
+  update: update,
 };

@@ -12,7 +12,9 @@ const getLetterByEmployeeId = async (id) => {
   const letters = new Array();
 
   for (let job of jobs) {
-    const letter = await Letter.find({ jobId: job._id }).select("-_id -userId -jobId");
+    const letter = await Letter.find({ jobId: job._id })
+      .sort({ createdAt: "desc" })
+      .select("-_id -userId -jobId");
     const temp = {
       job,
       letter,

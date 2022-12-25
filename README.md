@@ -33,6 +33,7 @@
 ##### Create cover letter
 
 `POST` http://localhost:3000/api/letter
+
 ##### example:
 
 - url: http://localhost:3000/api/letter
@@ -40,18 +41,18 @@
 
 ```json
 {
-  userId: '63a7384b23b7a9e719159592',
-  jobId: '63a4625a503cb2f662d4d19f',
-  infoUser: {
-    fullName: 'Long Nguyễn',
-    email: 'sv2htth@gmail.com',
-    phoneNumber: '0906592672',
-    address: 'Quảng Bình',
-    education: 'middleSchool',
-    experience: '3',
-    someDescription: '',
-    questions: '',
-    photoURL: 'https://lh3.googleusercontent.com/a/ALm5wu0PKVEY__pr9dmb_PIw8aUC-eN35j05AIFLkgxvtA=s96-c'
+  "userId": "63a7384b23b7a9e719159592",
+  "jobId": "63a4625a503cb2f662d4d19f",
+  "infoUser": {
+    "fullName": "Long Nguyễn",
+    "email": "sv2htth@gmail.com",
+    "phoneNumber": "0906592672",
+    "address": "Quảng Bình",
+    "education": "middleSchool",
+    "experience": "3",
+    "someDescription": "",
+    "questions": "",
+    "photoURL": "https://lh3.googleusercontent.com/a/ALm5wu0PKVEY__pr9dmb_PIw8aUC-eN35j05AIFLkgxvtA=s96-c"
   }
 }
 ```
@@ -59,7 +60,9 @@
 ##### Get user list group by job
 
 `GET` http://localhost:3000/api/letter/employee/:id
+
 ##### example:
+
 - url: http://localhost:3000/api/letter/employee/6396907df87cf714eb73d1ee
 
 - response:

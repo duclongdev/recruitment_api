@@ -70,6 +70,7 @@ const findJobs = async (data) => {
 
 const findJobsByEmployeeId = async (employeeId) => {
   const jobs = await Job.find({ userId: employeeId })
+    .sort({ createdAt: "desc" })
     .select("-jobDescription -salary -companyName -jobDetail")
     .exec();
   return jobs;
@@ -94,10 +95,24 @@ const loadMore = async (jobName, location, offset) => {
   return jobs;
 };
 
+const updateById = async (_id, update) => {
+  const updatedJob = await Job.findOneAndUpdate(_id, update, {
+    new: true,
+  });
+  return updatedJob;
+};
+
+const deleteById = async (_id) => {
+  const deletedJob = await Job.deleteOne({_id});
+  return deletedJob;
+};
+
 export const JobService = {
   saveJob: saveJob,
   getJobs: getJobs,
   findJobs: findJobs,
   findJobsByEmployeeId: findJobsByEmployeeId,
   loadMore: loadMore,
+  updateById: updateById,
+  deleteById: deleteById,
 };

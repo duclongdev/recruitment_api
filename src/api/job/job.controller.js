@@ -43,9 +43,34 @@ const loadJobMore = async (req, res, next) => {
   }
 };
 
+const updateByJobId = async (req, res, next) => {
+  try {
+    const _id = req.params.id;
+    const update = { ...req.body };
+    const updatedJob = await JobService.updateById(_id, update);
+    res.status(200).send(updatedJob);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).send(e.message);
+  }
+};
+
+const deleteByJobId = async (req, res, next) => {
+  try {
+    const _id = req.params.id;
+    const deletedJob = await JobService.deleteById(_id);
+    res.status(200).json(deletedJob);
+  } catch (e) {
+    console.log(e.message);
+    res.status(500).send(e.message);
+  }
+};
+
 export const JobController = {
   post: post,
   getJobs: getJobs,
   findJobs: findJobs,
   loadJobMore: loadJobMore,
+  update: updateByJobId,
+  delete: deleteByJobId,
 };

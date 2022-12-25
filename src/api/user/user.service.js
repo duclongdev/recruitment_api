@@ -52,8 +52,19 @@ const loginWithPassword = async (user) => {
   return userLogin;
 };
 
+const updateById = async (userId, userInfo) => {
+  const query = { _id: userId };
+  console.log(userInfo);
+  const updatedUser = await User.findOneAndUpdate(query, {
+    ...userInfo,
+  });
+  console.log(updatedUser);
+  return updatedUser;
+};
+
 export const Service = {
   login: login,
   signin: signin,
   loginWithPassword: loginWithPassword,
+  update: updateById,
 };
