@@ -21,6 +21,17 @@ const getJobs = async (req, res, next) => {
   }
 };
 
+const getAllJobs = async (req, res, next) => {
+  try {
+    const jobs = await JobService.getAllJobs();
+    console.log("getJobs");
+    res.status(200).json(jobs);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send(error);
+  }
+};
+
 const findJobs = async (req, res, next) => {
   try {
     const jobs = await JobService.findJobs(req.query);
@@ -73,4 +84,5 @@ export const JobController = {
   loadJobMore: loadJobMore,
   update: updateByJobId,
   delete: deleteByJobId,
+  getAllJobs,
 };

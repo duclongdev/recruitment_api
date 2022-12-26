@@ -12,5 +12,7 @@ router
 router.route('/:id')
   .put(JobController.update)
   .delete(JobController.delete);
+router.route("/").get(JobController.getJobs).post(JobController.post);
+router.route("/all").get(JobController.getAllJobs);
 
 export default router;

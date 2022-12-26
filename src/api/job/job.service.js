@@ -25,6 +25,15 @@ const getJobs = async (offset = 0) => {
   }
 };
 
+const getAllJobs = async () => {
+  try {
+    const jobs = await Job.find({ status: true }).sort({ createdAt: "desc" });
+    return jobs;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const findJobsByCondition = async (condition, offset = 0) => {
   console.log(condition);
   return await Job.find({ $text: { $search: condition }, status: true })
@@ -103,8 +112,13 @@ const updateById = async (_id, update) => {
 };
 
 const deleteById = async (_id) => {
-  const deletedJob = await Job.deleteOne({_id});
+  const deletedJob = await Job.deleteOne({ _id });
   return deletedJob;
+};
+
+const findById = async (_id) => {
+  const job = await Job.findOne(_id);
+  return job;
 };
 
 export const JobService = {
@@ -113,6 +127,8 @@ export const JobService = {
   findJobs: findJobs,
   findJobsByEmployeeId: findJobsByEmployeeId,
   loadMore: loadMore,
+  findById,
   updateById: updateById,
   deleteById: deleteById,
+  getAllJobs,
 };

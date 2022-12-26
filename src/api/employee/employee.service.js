@@ -34,9 +34,11 @@ const login = async (account) => {
 };
 
 const updateById = async (employId, account) => {
-  const doc = await Employee.findOne(employId);
+  const doc = await Employee.findOne({ employId });
   const update = { ...account };
+  console.log(doc);
   const newDoc = await doc.updateOne(update);
+  console.log(newDoc);
   return newDoc;
 };
 
