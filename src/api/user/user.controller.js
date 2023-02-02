@@ -44,8 +44,18 @@ const update = async (req, res, next) => {
   }
 };
 
+const getAllUser = async (req, res, next) => {
+  try {
+    const users = await Service.getAllUser();
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).send(error);
+  }
+};
 export const Controller = {
   login: login,
   signin: signin,
   update: update,
+  getAllUser,
 };

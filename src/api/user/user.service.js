@@ -62,9 +62,22 @@ const updateById = async (userId, userInfo) => {
   return updatedUser;
 };
 
+const getAllUser = async () => {
+  try {
+    const listUser = await User.find({ status: true }).sort({
+      createdAt: "desc",
+    });
+
+    return listUser;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const Service = {
   login: login,
   signin: signin,
   loginWithPassword: loginWithPassword,
   update: updateById,
+  getAllUser,
 };

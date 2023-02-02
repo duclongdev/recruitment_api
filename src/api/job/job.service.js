@@ -105,10 +105,10 @@ const loadMore = async (jobName, location, offset) => {
 };
 
 const updateById = async (_id, update) => {
-  const updatedJob = await Job.findOneAndUpdate(_id, update, {
-    new: true,
-  });
-  return updatedJob;
+  const doc = await Job.findOne({ _id });
+  const updateJob = { ...update };
+  const newDoc = await doc.updateOne(updateJob);
+  return newDoc;
 };
 
 const deleteById = async (_id) => {
@@ -128,7 +128,7 @@ export const JobService = {
   findJobsByEmployeeId: findJobsByEmployeeId,
   loadMore: loadMore,
   findById,
-  updateById: updateById,
+  updateById,
   deleteById: deleteById,
   getAllJobs,
 };

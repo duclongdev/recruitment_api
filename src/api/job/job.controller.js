@@ -24,7 +24,6 @@ const getJobs = async (req, res, next) => {
 const getAllJobs = async (req, res, next) => {
   try {
     const jobs = await JobService.getAllJobs();
-    console.log("getJobs");
     res.status(200).json(jobs);
   } catch (error) {
     console.log(error.message);
