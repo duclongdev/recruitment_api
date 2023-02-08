@@ -42,8 +42,21 @@ const updateById = async (employId, account) => {
   return newDoc;
 };
 
+const getAllEmployee = async () => {
+  try {
+    const listEmployee = await Employee.find({ status: true }).sort({
+      createdAt: "desc",
+    });
+
+    return listEmployee;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const EmployeeService = {
   signin: signin,
   login: login,
   updateById: updateById,
+  getAllEmployee,
 };
